@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lingfeng-cli-lib": "^1.0.0"
+    "lingfeng-cli-lib": "^1.0.0",
+    "yargs": "^17.7.2"
   }
 }
