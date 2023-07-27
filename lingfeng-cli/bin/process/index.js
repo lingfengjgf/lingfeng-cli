@@ -10,20 +10,28 @@ const path = require("path");
 //   cwd: path.resolve("E:/product/lingfeng-cli/lingfeng-cli"),
 //   shell: true,
 // });
+const child = cp.spawn(
+  "git",
+  ["clone", "https://github.com/lingfengjgf/css.git"],
+  {
+    cwd: path.resolve("E:/product/test-cli"),
+    // shell: true,
+  }
+);
 
-// child.stdout.on("data", function (chunk) {
-//   console.log("stdout:", chunk.toString());
-// });
-// child.stderr.on("data", function (chunk) {
-//   console.log("stderr:", chunk.toString());
-// });
-
-const child = cp.fork(path.resolve(__dirname, "child.js"));
-console.log("main pid:", process.pid);
-child.send("this is main process msg", () => {
-  // child.disconnect();
+child.stdout.on("data", function (chunk) {
+  console.log("stdout:", chunk.toString());
+});
+child.stderr.on("data", function (chunk) {
+  console.log("stderr:", chunk.toString());
 });
 
-child.on("message", (msg) => {
-  console.log("main process:", msg);
-});
+// const child = cp.fork(path.resolve(__dirname, "child.js"));
+// console.log("main pid:", process.pid);
+// child.send("this is main process msg", () => {
+//   // child.disconnect();
+// });
+
+// child.on("message", (msg) => {
+//   console.log("main process:", msg);
+// });
